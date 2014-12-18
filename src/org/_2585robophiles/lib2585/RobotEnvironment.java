@@ -2,7 +2,7 @@ package org._2585robophiles.lib2585;
 
 import edu.wpi.first.wpilibj.RobotBase;
 
-public abstract class RobotEnvironment {
+public abstract class RobotEnvironment implements Destroyable {
 
 	private RobotBase robot;
 
@@ -39,14 +39,14 @@ public abstract class RobotEnvironment {
 	/**
 	 * @return the robot
 	 */
-	protected RobotBase getRobot() {
+	protected synchronized RobotBase getRobot() {
 		return robot;
 	}
 
 	/**
 	 * @param robot the robot to set
 	 */
-	protected void setRobot(RobotBase robot) {
+	protected synchronized void setRobot(RobotBase robot) {
 		this.robot = robot;
 	}
 
