@@ -15,6 +15,9 @@ package org._2585robophiles.lib2585;
 
 */
 
+/**
+ *	holds constants for Xbox controller buttons and axes 
+ */
 public interface XboxConstants {
 	
 	public static final int LEFT_X_AXIS = 1;
