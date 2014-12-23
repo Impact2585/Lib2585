@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
  * Robot that uses executers
  * This is the equivelant of a main class in WPILib.
  */
-public abstract class ExecuterRobot extends IterativeRobot {
+public abstract class ExecuterBasedRobot extends IterativeRobot {
 
     private Executer executer;
 
