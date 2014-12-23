@@ -2,9 +2,12 @@ package org._2585robophiles.lib2585;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 
+/**
+ * Robot that uses executers
+ * This is the equivelant of a main class in WPILib.
+ */
 public abstract class ExecuterRobot extends IterativeRobot {
 
-    private RobotEnvironment environment;
     private Executer executer;
 
     /* (non-Javadoc)
@@ -46,28 +49,6 @@ public abstract class ExecuterRobot extends IterativeRobot {
     public void disabledPeriodic() {
 
     }
-
-    /* (non-Javadoc)
-     * @see edu.wpi.first.wpilibj.RobotBase#free()
-     */
-    public void free() {
-        environment.destroy();
-        super.free();
-    }
-
-	/**
-	 * @return the environment
-	 */
-	protected synchronized RobotEnvironment getEnvironment() {
-		return environment;
-	}
-
-	/**
-	 * @param environment the environment to set
-	 */
-	protected synchronized void setEnvironment(RobotEnvironment environment) {
-		this.environment = environment;
-	}
 
 	/**
 	 * @return the executer

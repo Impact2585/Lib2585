@@ -2,20 +2,22 @@ package org._2585robophiles.lib2585;
 
 import edu.wpi.first.wpilibj.RobotBase;
 
+/**
+ * This class represents the environment of the robot. Subclasses should contain the systems.
+ */
 public abstract class RobotEnvironment implements Destroyable {
 
 	private RobotBase robot;
 
 	/**
-	 * initializes nothing
+	 * Just a default constructor that does nothing
 	 */
 	public RobotEnvironment() {
 
 	}
 
 	/**
-	 * Initializes systems
-	 * 
+	 * Set the RobotBase
 	 * @param robot the RobotBase to set
 	 */
 	public RobotEnvironment(RobotBase robot) {

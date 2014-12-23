@@ -3,6 +3,9 @@ package org._2585robophiles.lib2585;
 import edu.wpi.first.wpilibj.SensorBase;
 import edu.wpi.first.wpilibj.SpeedController;
 
+/**
+ * This class can be used to control multiple motors which are working together as one.
+ */
 public class MultiMotor extends SensorBase implements SpeedController {
 
 	private SpeedController[] motors;

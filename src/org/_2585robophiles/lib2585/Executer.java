@@ -1,6 +1,9 @@
 package org._2585robophiles.lib2585;
 
-public interface Executer extends Initializable{
+/**
+ * SAM interface with an execute() method
+ */
+public interface Executer{
 	
 	/**
 	 * Execute actions which should happen every 20 or so milliseconds
