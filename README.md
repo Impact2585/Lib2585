@@ -1,7 +1,7 @@
 Lib2585
 =======
 
-This FRC library was made from the [code for aerbot](https://github.com/2585Robophiles/aerbot-champs), team 2585's robot for 2014, which has [unit tests](https://github.com/2585Robophiles/aerbot-junit).
+This FRC library was made from the [code for aerbot](https://github.com/2585Robophiles/aerbot-champs), team 2585's robot for 2014, which has been [unit tested](https://github.com/2585Robophiles/aerbot-junit).
 
 Downloads can be found on the [releases](https://github.com/2585Robophiles/Lib2585/releases) page.
 
