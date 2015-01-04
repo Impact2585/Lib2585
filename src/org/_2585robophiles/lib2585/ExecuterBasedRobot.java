@@ -1,13 +1,17 @@
 package org._2585robophiles.lib2585;
 
+import java.io.Serializable;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 /**
  * Robot that uses executers This is the equivelant of a main class in WPILib.
  */
-public abstract class ExecuterBasedRobot extends IterativeRobot {
+public abstract class ExecuterBasedRobot extends IterativeRobot implements Serializable {
 
-	private Executer executer;
+	private static final long serialVersionUID = 2220871954112107703L;
+	
+	private transient Executer executer;
 
 	/*
 	 * (non-Javadoc)

@@ -1,14 +1,18 @@
 package org._2585robophiles.lib2585;
 
+import java.io.Serializable;
+
 import edu.wpi.first.wpilibj.SensorBase;
 import edu.wpi.first.wpilibj.SpeedController;
 
 /**
  * This class can be used to control multiple motors which are working together as one.
  */
-public class MultiMotor extends SensorBase implements SpeedController {
+public class MultiMotor extends SensorBase implements SpeedController, Serializable {
 
-	private SpeedController[] motors;
+	private static final long serialVersionUID = 6048538258446457916L;
+	
+	private transient SpeedController[] motors;
 
 	/**
 	 * @param motors SpeedController array

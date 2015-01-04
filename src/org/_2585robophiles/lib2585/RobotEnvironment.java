@@ -1,13 +1,17 @@
 package org._2585robophiles.lib2585;
 
+import java.io.Serializable;
+
 import edu.wpi.first.wpilibj.RobotBase;
 
 /**
  * This class represents the environment of the robot. Subclasses should contain the systems.
  */
-public abstract class RobotEnvironment implements Destroyable {
+public abstract class RobotEnvironment implements Destroyable, Serializable {
 
-	private RobotBase robot;
+	private static final long serialVersionUID = 5958899478403442774L;
+	
+	private transient RobotBase robot;
 
 	/**
 	 * Just a default constructor that does nothing

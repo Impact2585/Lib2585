@@ -1,14 +1,18 @@
 package org._2585robophiles.lib2585;
 
+import java.io.Serializable;
+
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SensorBase;
 
 /**
  * Solenoid with relays going in opposite directions
  */
-public class DoubleSolenoid extends SensorBase {
+public class DoubleSolenoid extends SensorBase implements Serializable {
 
-	private Relay relayOne, relayTwo;
+	private static final long serialVersionUID = 3161366075688287541L;
+	
+	private transient Relay relayOne, relayTwo;
 	private boolean defaultState = true;
 
 	/**
