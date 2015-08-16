@@ -1,27 +1,14 @@
 package org._2585robophiles.lib2585;
 
-/*
-
-1: A
-2: B
-3: X
-4: Y
-5: Left Bumper
-6: Right Bumper
-7: Back
-8: Start
-9: Left Joystick
-10: Right Joystick
-
-*/
-
 /**
- *	holds constants for Xbox controller buttons and axes 
+ *	holds constants for Xbox 360 controller buttons and axes 
  */
 public interface XboxConstants {
 	
-	public static final int LEFT_X_AXIS = 1;
-	public static final int LEFT_Y_AXIS = 2;
+	public static final int LEFT_X_AXIS = 0;
+	public static final int LEFT_Y_AXIS = 1;
+	public static final int LEFT_TRIGGER = 2;
+	public static final int RIGHT_TRIGGER = 3;
 	public static final int RIGHT_X_AXIS = 4;
 	public static final int RIGHT_Y_AXIS = 5;
 

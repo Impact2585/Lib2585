@@ -10,7 +10,7 @@ public abstract class RunnableExecuter implements Executer, Serializable {
 	
 	private static final long serialVersionUID = -7700534735844195641L;
 	
-	private final Vector runnables = new Vector();
+	private final Vector<Runnable> runnables = new Vector<Runnable>();
 
 	/* (non-Javadoc)
 	 * @see org._2585robophiles.lib2585.Executer#execute()
@@ -18,7 +18,7 @@ public abstract class RunnableExecuter implements Executer, Serializable {
 	public void execute() {
 		//run all the runnables
 		for(int i = 0; i < runnables.size(); i++){
-			Runnable runnable = (Runnable) runnables.elementAt(i);
+			Runnable runnable = runnables.elementAt(i);
 			runnable.run();
 		}
 	}
@@ -26,7 +26,7 @@ public abstract class RunnableExecuter implements Executer, Serializable {
 	/**
 	 * @return the runnables
 	 */
-	public synchronized Vector getRunnables() {
+	public synchronized Vector<Runnable> getRunnables() {
 		return runnables;
 	}
 
