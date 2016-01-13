@@ -1,4 +1,4 @@
-package org._2585robophiles.lib2585;
+package org.impact2585.lib2585;
 
 import java.io.Serializable;
 
