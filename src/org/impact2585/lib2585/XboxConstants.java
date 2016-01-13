@@ -1,4 +1,4 @@
-package org._2585robophiles.lib2585;
+package org.impact2585.lib2585;
 
 /**
  *	holds constants for Xbox 360 controller buttons and axes 
