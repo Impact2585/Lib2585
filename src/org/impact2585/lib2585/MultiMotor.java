@@ -74,6 +74,24 @@ public class MultiMotor extends SensorBase implements SpeedController, Serializa
 		for (int i = 0; i < motors.length; i++)
 			motors[i].set(speed, syncGroup);
 	}
+	
+	/* (non-Javadoc)
+	 * @see edu.wpi.first.wpilibj.SpeedController#getInverted()
+	 */
+	@Override
+	public boolean getInverted(){
+		return motors[0].getInverted();
+		
+	}
+	
+	/* (non-Javadoc)
+	 * @see edu.wpi.first.wpilibj.SpeedController#setInverted(boolean)
+	 */
+	@Override
+	public void setInverted(boolean isInverted) {
+		for (int i = 0; i < motors.length; i++)
+			motors[i].setInverted(isInverted);
+	}
 
 	/*
 	 * (non-Javadoc)
