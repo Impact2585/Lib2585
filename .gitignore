@@ -13,3 +13,5 @@ hs_err_pid*
 # Output Folders
 bin/
 build/
+
+junit/

@@ -62,12 +62,14 @@ public class DoubleSolenoid extends SensorBase implements Serializable {
 	 * (non-Javadoc)
 	 * @see edu.wpi.first.wpilibj.SensorBase#free()
 	 */
+	@Override
 	public void free() {
 		this.relayOne.free();
 		this.relayTwo.free();
 	}
 
 	/**
+	 * State of the pneumatic
 	 * @return returns the state of pneumatics (default or not default)
 	 */
 	public boolean isDefaultState() {
@@ -75,6 +77,7 @@ public class DoubleSolenoid extends SensorBase implements Serializable {
 	}
 
 	/**
+	 * Set state
 	 * @param defaultState state of pneumatics
 	 */
 	protected void setDefaultState(boolean defaultState) {

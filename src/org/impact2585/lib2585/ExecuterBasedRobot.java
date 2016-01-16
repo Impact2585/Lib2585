@@ -17,12 +17,14 @@ public abstract class ExecuterBasedRobot extends IterativeRobot implements Seria
 	 * (non-Javadoc)
 	 * @see edu.wpi.first.wpilibj.IterativeRobot#robotInit()
 	 */
+	@Override
 	public abstract void robotInit();
 
 	/*
 	 * (non-Javadoc)
 	 * @see edu.wpi.first.wpilibj.IterativeRobot#autonomousPeriodic()
 	 */
+	@Override
 	public void autonomousPeriodic() {
 		executer.execute();
 	}
@@ -31,6 +33,7 @@ public abstract class ExecuterBasedRobot extends IterativeRobot implements Seria
 	 * (non-Javadoc)
 	 * @see edu.wpi.first.wpilibj.IterativeRobot#teleopPeriodic()
 	 */
+	@Override
 	public void teleopPeriodic() {
 		executer.execute();
 	}
@@ -39,6 +42,7 @@ public abstract class ExecuterBasedRobot extends IterativeRobot implements Seria
 	 * (non-Javadoc)
 	 * @see edu.wpi.first.wpilibj.IterativeRobot#testPeriodic()
 	 */
+	@Override
 	public void testPeriodic() {
 		executer.execute();
 	}
@@ -47,6 +51,7 @@ public abstract class ExecuterBasedRobot extends IterativeRobot implements Seria
 	 * (non-Javadoc)
 	 * @see edu.wpi.first.wpilibj.IterativeRobot#disabledInit()
 	 */
+	@Override
 	public void disabledInit() {
 
 	}
@@ -55,11 +60,13 @@ public abstract class ExecuterBasedRobot extends IterativeRobot implements Seria
 	 * (non-Javadoc)
 	 * @see edu.wpi.first.wpilibj.IterativeRobot#disabledPeriodic()
 	 */
+	@Override
 	public void disabledPeriodic() {
 
 	}
 
 	/**
+	 * Accessor for executer
 	 * @return the executer
 	 */
 	protected synchronized Executer getExecuter() {
@@ -67,6 +74,7 @@ public abstract class ExecuterBasedRobot extends IterativeRobot implements Seria
 	}
 
 	/**
+	 * Mutator for executer
 	 * @param executer the executer to set
 	 */
 	protected synchronized void setExecuter(Executer executer) {
