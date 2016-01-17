@@ -15,6 +15,7 @@ public class MultiMotor extends SensorBase implements SpeedController, Serializa
 	private transient SpeedController[] motors;
 
 	/**
+	 * Constructor that consumes an array
 	 * @param motors SpeedController array
 	 * @throws IllegalArgumentException if array is empty
 	 */
@@ -29,6 +30,7 @@ public class MultiMotor extends SensorBase implements SpeedController, Serializa
 	 * 
 	 * @see edu.wpi.first.wpilibj.PIDOutput#pidWrite(double)
 	 */
+	@Override
 	public void pidWrite(double output) {
 		for (int i = 0; i < motors.length; i++) {
 			motors[i].pidWrite(output);
@@ -40,6 +42,7 @@ public class MultiMotor extends SensorBase implements SpeedController, Serializa
 	 * 
 	 * @see edu.wpi.first.wpilibj.SpeedController#disable()
 	 */
+	@Override
 	public void disable() {
 		for (int i = 0; i < motors.length; i++) {
 			motors[i].disable();
@@ -51,6 +54,7 @@ public class MultiMotor extends SensorBase implements SpeedController, Serializa
 	 * 
 	 * @see edu.wpi.first.wpilibj.SpeedController#get()
 	 */
+	@Override
 	public double get() {
 		return motors[0].get();
 	}
@@ -60,6 +64,7 @@ public class MultiMotor extends SensorBase implements SpeedController, Serializa
 	 * 
 	 * @see edu.wpi.first.wpilibj.SpeedController#set(double)
 	 */
+	@Override
 	public void set(double speed) {
 		for (int i = 0; i < motors.length; i++)
 			motors[i].set(speed);
@@ -70,6 +75,7 @@ public class MultiMotor extends SensorBase implements SpeedController, Serializa
 	 * 
 	 * @see edu.wpi.first.wpilibj.SpeedController#set(double, byte)
 	 */
+	@Override
 	public void set(double speed, byte syncGroup) {
 		for (int i = 0; i < motors.length; i++)
 			motors[i].set(speed, syncGroup);
@@ -98,6 +104,7 @@ public class MultiMotor extends SensorBase implements SpeedController, Serializa
 	 * 
 	 * @see edu.wpi.first.wpilibj.SensorBase#free()
 	 */
+	@Override
 	public void free() {
 		for (int i = 0; i < motors.length; i++) {
 			if (motors[i] instanceof SensorBase) {

@@ -29,6 +29,7 @@ public abstract class RobotEnvironment implements Destroyable, Serializable {
 	}
 
 	/**
+	 * Find out which mode the bot is in
 	 * @return if the robot is in auton mode
 	 */
 	public boolean isAutonomous() {
@@ -36,6 +37,7 @@ public abstract class RobotEnvironment implements Destroyable, Serializable {
 	}
 
 	/**
+	 * See if the robot is in teleop
 	 * @return if robot is in teleop mode
 	 */
 	public boolean isOperatorControl() {
@@ -43,6 +45,7 @@ public abstract class RobotEnvironment implements Destroyable, Serializable {
 	}
 
 	/**
+	 * Accessor for robot
 	 * @return the robot
 	 */
 	protected synchronized RobotBase getRobot() {
@@ -50,6 +53,7 @@ public abstract class RobotEnvironment implements Destroyable, Serializable {
 	}
 
 	/**
+	 * Mutator for robot
 	 * @param robot the robot to set
 	 */
 	protected synchronized void setRobot(RobotBase robot) {

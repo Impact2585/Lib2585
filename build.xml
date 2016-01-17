@@ -7,11 +7,10 @@
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
-    <path id="FRC2015.classpath">
+    <path id="Lib2585.classpath">
         <pathelement location="bin"/>
         <pathelement location="${wpilib}"/>
         <pathelement location="${networktables}"/>
-        <pathelement location="lib/Lib2585.jar"/>
     	<pathelement location="lib/junit-4.12.jar"/>
     	<pathelement location="lib/hamcrest-core-1.3.jar"/>
     </path>
@@ -19,6 +18,11 @@
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="test">
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -33,8 +37,26 @@
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
-            <classpath refid="FRC2015.classpath"/>
+            <src path="test"/>
+            <classpath refid="Lib2585.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target name="RunnableExecuterTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" haltonfailure="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="org.impact2585.lib2585.tests.RunnableExecuterTest" todir="${junit.output.dir}"/>
+            <classpath refid="Lib2585.classpath"/>
+        </junit>
+    </target>
+    <target depends="build-project, RunnableExecuterTest" name="test"/>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
 </project>
