@@ -47,22 +47,14 @@ public abstract class ExecuterBasedRobot extends IterativeRobot implements Seria
 		executer.execute();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see edu.wpi.first.wpilibj.IterativeRobot#disabledInit()
-	 */
-	@Override
-	public void disabledInit() {
-
-	}
 
 	/*
 	 * (non-Javadoc)
 	 * @see edu.wpi.first.wpilibj.IterativeRobot#disabledPeriodic()
-	 */
+	 */	
 	@Override
 	public void disabledPeriodic() {
-
+		executer.execute();
 	}
 
 	/**
