@@ -26,7 +26,8 @@ public abstract class ExecuterBasedRobot extends IterativeRobot implements Seria
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		executer.execute();
+		if (executer != null)
+			executer.execute();
 	}
 
 	/*
@@ -35,7 +36,8 @@ public abstract class ExecuterBasedRobot extends IterativeRobot implements Seria
 	 */
 	@Override
 	public void teleopPeriodic() {
-		executer.execute();
+		if (executer != null)
+			executer.execute();
 	}
 
 	/*
@@ -44,7 +46,8 @@ public abstract class ExecuterBasedRobot extends IterativeRobot implements Seria
 	 */
 	@Override
 	public void testPeriodic() {
-		executer.execute();
+		if (executer != null)
+			executer.execute();
 	}
 
 
@@ -54,7 +57,8 @@ public abstract class ExecuterBasedRobot extends IterativeRobot implements Seria
 	 */	
 	@Override
 	public void disabledPeriodic() {
-		executer.execute();
+		if (executer != null)
+			executer.execute();
 	}
 
 	/**
