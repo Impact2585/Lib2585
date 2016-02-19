@@ -36,8 +36,11 @@ public abstract class RunnableExecuter implements Executer, Serializable {
 		//run all the runnables
 		if(concurrent)
 			runnables.parallelStream().forEach(runnable -> runnable.run());
-		else
-			runnables.forEach(runnable -> runnable.run());
+		else {
+			for (Runnable runnable : runnables) {
+				runnable.run();
+			}
+		}
 	}
 
 	/**
