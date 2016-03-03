@@ -1,62 +1,56 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project basedir="." default="build" name="Lib2585">
-    <property environment="env"/>
-    <property name="wpilib" value="lib/WPILib.jar"/>
-    <property name="networktables" value="lib/NetworkTables.jar"/>
-    <property name="junit.output.dir" value="junit"/>
-    <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="1.8"/>
-    <property name="source" value="1.8"/>
-    <path id="Lib2585.classpath">
-        <pathelement location="bin"/>
-        <pathelement location="${wpilib}"/>
-        <pathelement location="${networktables}"/>
-    	<pathelement location="lib/junit-4.12.jar"/>
-    	<pathelement location="lib/hamcrest-core-1.3.jar"/>
-    </path>
-    <target name="init">
-        <mkdir dir="bin"/>
-        <copy includeemptydirs="false" todir="bin">
-            <fileset dir="src">
-                <exclude name="**/*.java"/>
-            </fileset>
-        </copy>
-        <copy includeemptydirs="false" todir="bin">
-            <fileset dir="test">
-                <exclude name="**/*.java"/>
-            </fileset>
-        </copy>
-    </target>
-    <target name="clean">
-        <delete dir="bin"/>
-    </target>
-    <target depends="clean" name="cleanall"/>
-    <target depends="build-subprojects,build-project" name="build"/>
-    <target name="build-subprojects"/>
-    <target depends="init" name="build-project">
-        <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
-            <src path="src"/>
-            <src path="test"/>
-            <classpath refid="Lib2585.classpath"/>
-        </javac>
-    </target>
-    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
-    <target name="RunnableExecuterTest">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" haltonfailure="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="org.impact2585.lib2585.tests.RunnableExecuterTest" todir="${junit.output.dir}"/>
-            <classpath refid="Lib2585.classpath"/>
-        </junit>
-    </target>
-    <target depends="build-project, RunnableExecuterTest" name="test"/>
-    <target name="junitreport">
-        <junitreport todir="${junit.output.dir}">
-            <fileset dir="${junit.output.dir}">
-                <include name="TEST-*.xml"/>
-            </fileset>
-            <report format="frames" todir="${junit.output.dir}"/>
-        </junitreport>
-    </target>
+	<property environment="env" />
+	<property name="wpilib" value="lib/WPILib.jar" />
+	<property name="networktables" value="lib/NetworkTables.jar" />
+	<property name="junit.output.dir" value="junit" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.8" />
+	<property name="source" value="1.8" />
+	<path id="Lib2585.classpath">
+		<pathelement location="bin" />
+		<pathelement location="${wpilib}" />
+		<pathelement location="${networktables}" />
+		<pathelement location="lib/junit-4.12.jar" />
+		<pathelement location="lib/hamcrest-core-1.3.jar" />
+	</path>
+	<target name="init">
+		<mkdir dir="bin" />
+		<copy includeemptydirs="false" todir="bin">
+			<fileset dir="src">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy includeemptydirs="false" todir="bin">
+			<fileset dir="test">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+	<target name="clean">
+		<delete dir="bin" />
+	</target>
+	<target depends="clean" name="cleanall" />
+	<target depends="build-subprojects,build-project" name="build" />
+	<target name="build-subprojects" />
+	<target depends="init" name="build-project">
+		<echo message="${ant.project.name}: ${ant.file}" />
+		<javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+			<src path="src" />
+			<src path="test" />
+			<classpath refid="Lib2585.classpath" />
+		</javac>
+	</target>
+	<target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects" />
+	<target depends="build" name="test">
+		<mkdir dir="${junit.output.dir}" />
+		<junit fork="yes" haltonfailure="yes" printsummary="withOutAndErr">
+			<batchtest>
+				<fileset dir="test">
+					<include name="org/impact2585/lib2585/tests/RunnableExecuterTest.java"/>
+				</fileset>
+			</batchtest>
+			<classpath refid="Lib2585.classpath" />
+		</junit>
+	</target>
 </project>
