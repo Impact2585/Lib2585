@@ -48,6 +48,7 @@
 			<batchtest>
 				<fileset dir="test">
 					<include name="org/impact2585/lib2585/tests/RunnableExecuterTest.java"/>
+					<include name="org/impact2585/lib2585/tests/DoubleInputProcessorTest.java"/>
 				</fileset>
 			</batchtest>
 			<classpath refid="Lib2585.classpath" />
