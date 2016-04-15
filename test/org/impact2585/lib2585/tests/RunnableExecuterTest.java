@@ -2,7 +2,6 @@ package org.impact2585.lib2585.tests;
 
 import java.util.LinkedList;
 
-import org.hamcrest.CoreMatchers;
 import org.impact2585.lib2585.RunnableExecuter;
 import org.junit.Assert;
 import org.junit.Before;
@@ -44,14 +43,14 @@ public class RunnableExecuterTest {
 			concurrentExecuter.getRunnables().add(item);
 		concurrentExecuter.execute();
 		for (TestRunnable runnable : testRunnables){
-			Assert.assertThat(runnable.ran, CoreMatchers.equalTo(true));
+			Assert.assertTrue(runnable.ran);
 			runnable.ran = false;// reset runnable
 		}
 		// test sequential too
 		sequentialExecuter.getRunnables().addAll(testRunnables);
 		sequentialExecuter.execute();
 		for (TestRunnable runnable : testRunnables) {
-			Assert.assertThat(runnable.ran, CoreMatchers.equalTo(true));
+			Assert.assertTrue(runnable.ran);
 		}
 	}
 
