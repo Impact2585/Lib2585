@@ -1,6 +1,7 @@
-Lib2585 [![Build Status](https://travis-ci.org/Impact2585/Lib2585.svg?branch=master)](https://travis-ci.org/Impact2585/Lib2585)
+Lib2585
 =======
 
+[![Build Status](https://travis-ci.org/Impact2585/Lib2585.svg?branch=master)](https://travis-ci.org/Impact2585/Lib2585)
 [![Join the chat at https://gitter.im/Impact2585/Lib2585](https://badges.gitter.im/Impact2585/Lib2585.svg)](https://gitter.im/Impact2585/Lib2585?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 This FRC library is made to supplement WPILibJ and has [documentation available](https://impact2585.github.io/Lib2585).
