@@ -1,14 +1,15 @@
 package org.impact2585.lib2585.tests;
 
 
-import org.impact2585.lib2585.InputProcessor;
+import org.impact2585.lib2585.BooleanInputProcessor;
+import org.impact2585.lib2585.DoubleInputProcessor;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 
 /**
- * Test for the InputProcessor
+ * Test for the DoubleInputProcessor and BooleanInputProcessor
  */
 public class InputProcessorTest {
 	private double analogInput1, analogInput2, analogInput3;
@@ -17,8 +18,8 @@ public class InputProcessorTest {
 	private double thirdMotorSpeed;
 	private boolean digitalInput1, digitalInput2;
 	private TestSystem system;
-	private InputProcessor <Double> generalProcessor;
-	private InputProcessor<Boolean> booleanProcessor;
+	private DoubleInputProcessor  doubleProcessor;
+	private BooleanInputProcessor booleanProcessor;
 	
 	/**
 	 * Sets up the unit test
@@ -26,7 +27,7 @@ public class InputProcessorTest {
 	@Before
 	public void setUp() {
 		system = new TestSystem();
-		generalProcessor = new InputProcessor<Double>(){
+		doubleProcessor = new DoubleInputProcessor(){
 
 			/* (non-Javadoc)
 			 * @see org.impact2585.lib2585.DoubleInputProcessor#process(java.lang.Object[])
@@ -37,7 +38,7 @@ public class InputProcessorTest {
 			}
 		};
 		
-		booleanProcessor = new InputProcessor<Boolean>() {
+		booleanProcessor = new BooleanInputProcessor() {
 
 			/* (non-Javadoc)
 			 * @see org.impact2585.lib2585.InputProcessor#process(java.lang.Object[])
@@ -58,7 +59,7 @@ public class InputProcessorTest {
 	}
 
 	/**
-	 * Perform unit test on the InputProcessor
+	 * Perform unit test on the DoubleInputProcessor and BooleanInputProcessor
 	 */
 	@Test
 	public void test() {
@@ -96,24 +97,24 @@ public class InputProcessorTest {
 	 */
 	private class TestSystem implements Runnable{
 		
-		/** Sets the speed of the first motor using an InputProcessor
-		 * @param processor an InputProcessor that takes input from two analog inputs
+		/** Sets the speed of the first motor using a DoubleInputProcessor
+		 * @param processor a DoubleInputProcessor that takes input from two analog inputs
 		 */
-		public void setFirstMotorSpeed(InputProcessor<Double>processor) {
+		public void setFirstMotorSpeed(DoubleInputProcessor processor) {
 			firstMotorSpeed = processor.process(analogInput1, analogInput2);
 		}
 		
-		/** Sets the speed of the second motor using an InputProcessor
-		 * @param processor an InputProcessor that takes input from one analog input
+		/** Sets the speed of the second motor using a DoubleInputProcessor
+		 * @param processor a DoubleInputProcessor that takes input from one analog input
 		 */
-		public void setSecondMotorSpeed(InputProcessor<Double>processor) {
+		public void setSecondMotorSpeed(DoubleInputProcessor processor) {
 			secondMotorSpeed = processor.process(analogInput3);
 		}
 		
-		/**Sets the speed of the third motor using an InputProcessor
-		 * @param processor an InputProcessor that takes input from two boolean inputs
+		/**Sets the speed of the third motor using a BooleanInputProcessor
+		 * @param processor a BooleanInputProcessor that takes input from two boolean inputs
 		 */
-		public void setThirdMotorSpeed(InputProcessor<Boolean>processor) {
+		public void setThirdMotorSpeed(BooleanInputProcessor processor) {
 			thirdMotorSpeed = processor.process(digitalInput1, digitalInput2);
 		}
 		
@@ -131,7 +132,7 @@ public class InputProcessorTest {
 				}
 			});
 			
-			this.setSecondMotorSpeed(generalProcessor);
+			this.setSecondMotorSpeed(doubleProcessor);
 			this.setThirdMotorSpeed(booleanProcessor);
 		}
 		
