@@ -47,8 +47,7 @@
 		<junit fork="yes" haltonfailure="yes" printsummary="withOutAndErr">
 			<batchtest>
 				<fileset dir="test">
-					<include name="org/impact2585/lib2585/tests/RunnableExecuterTest.java"/>
-					<include name="org/impact2585/lib2585/tests/InputProcessorTest.java"/>
+					<include name="**/*.java"/>
 				</fileset>
 			</batchtest>
 			<classpath refid="Lib2585.classpath" />
