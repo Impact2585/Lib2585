@@ -20,12 +20,19 @@ public class Toggler {
 	 * @return the toggleState of the Toggler
 	 */
 	public boolean toggle(boolean toggle) {
-		
 		//The toggleState will not be toggled if the toggle has been held down too long
 		if(toggle && !prevToggle) {
 			toggleState = !toggleState;
 		}
 		prevToggle = toggle;
+		return toggleState;
+	}
+	
+	/**Current state of the Toggler.
+	 * This method has no side effects.
+	 * @return the toggleState
+	 */
+	public boolean state(){
 		return toggleState;
 	}
 }
