@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.I2C;
 /**
  *Systems on the robot should use this class if they want to use an MPU6050 to measure acceleration and orientation
  */
-public class MPU6050 {
+public class MPU6050 implements Destroyable{
 	public static final int DEVICE_ADDRESS = 0x34;
 	public static final short DMP_PACKET_SIZE = 42;
 	public static final int RESET_BIT = 7;
@@ -133,6 +133,20 @@ public class MPU6050 {
 		i2cBus.write(0x1C, 0);
 	}
 	
+	/**
+	 * @return the connectionSuccessfull
+	 */
+	public boolean isConnectionSuccessfull() {
+		return connectionSuccessfull;
+	}
+	
+	/**
+	 * @param connectionSuccessfull the connectionSuccessfull to set
+	 */
+	public void setConnectionSuccessfull(boolean connectionSuccessfull) {
+		this.connectionSuccessfull = connectionSuccessfull;
+	}
+
 	/**
 	 * @return true if the MPU6050 successfully updated, false if otherwise
 	 */
@@ -478,5 +492,13 @@ public class MPU6050 {
 			this.zComponent = zComponent;
 		}
 
+	}
+
+	/* (non-Javadoc)
+	 * @see org.impact2585.lib2585.Destroyable#destroy()
+	 */
+	@Override
+	public void destroy() {
+		i2cBus.free();
 	}
 }
