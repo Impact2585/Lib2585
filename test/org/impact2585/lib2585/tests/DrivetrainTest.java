@@ -40,7 +40,7 @@ public class DrivetrainTest {
 	 */
 	@Before
 	public void setUp() {
-		drivetrain = new TestDrivetrain(INPUT_DEADZONE, RAMP, PRIMARY_ROTATION_EXPONENT, SECONDARY_ROTATION_EXPONENT, null);
+		drivetrain = new TestDrivetrain(INPUT_DEADZONE, RAMP, PRIMARY_ROTATION_EXPONENT, SECONDARY_ROTATION_EXPONENT, false, null);
 		currentRampForward = 0;
 		driveForward = 0;
 		rotate = 0;
@@ -165,6 +165,17 @@ public class DrivetrainTest {
 		toggleRotationExponent = true;
 		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
 		Assert.assertTrue(currentRampForward == ramp && rotate == Math.pow(0.3, drivetrain.getPrimaryRotationExponent()));
+		
+		//test if the rotation can be inverted
+		drivetrain.setInvertRotation(true);
+		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
+		Assert.assertTrue(currentRampForward == ramp && rotate == -Math.pow(0.3, drivetrain.getPrimaryRotationExponent()));
+	
+		//test if the rotation can be set back to normal
+		drivetrain.setInvertRotation(false);
+		rotate = 0.3;
+		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
+		Assert.assertTrue(currentRampForward == ramp && rotate == Math.pow(0.3, drivetrain.getPrimaryRotationExponent()));
 	}
 
 	/**
@@ -177,11 +188,11 @@ public class DrivetrainTest {
 		 * @param ramping ramping acceleration constant 
 		 * @param primaryEx primary rotation exponent
 		 * @param secondEx secondary rotation exponent
+		 * @param invertRotation boolean for inverting the rotate value
 		 * @param drivebase robot drive object
 		 */
-		public TestDrivetrain(double inputDeadzone, double ramping, double primaryEx, double secondEx,
-				RobotDrive drivebase) {
-			super(inputDeadzone, ramping, primaryEx, secondEx, drivebase);
+		public TestDrivetrain(double inputDeadzone, double ramping, double primaryEx, double secondEx, boolean invertRotation, RobotDrive drivebase) {
+			super(inputDeadzone, ramping, primaryEx, secondEx, invertRotation, drivebase);
 		}
 
 		/* (non-Javadoc)

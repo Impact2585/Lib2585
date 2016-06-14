@@ -17,16 +17,17 @@ public class Drivetrain implements Destroyable {
 	private Toggler invertToggler;
 	private Toggler rotationExponentToggler;
 	private boolean usePrimaryRotationExponent = true;
-
-
+	private boolean invertRotation = false;
+	
 	/** 
 	 * @param inputDeadzone joystick deadzone 
 	 * @param ramping ramping acceleration constant 
 	 * @param primaryEx primary rotation exponent
 	 * @param secondEx secondary rotation exponent
+	 * @param invertRotation boolean for inverting the rotate value
 	 * @param drivebase robot drive object
 	 */
-	public Drivetrain(double inputDeadzone, double ramping, double primaryEx, double secondEx, RobotDrive drivebase){
+	public Drivetrain(double inputDeadzone, double ramping, double primaryEx, double secondEx, boolean invertRotation, RobotDrive drivebase){
 		deadzone = inputDeadzone;
 		ramp = ramping;
 		primaryRotationExponent = primaryEx;
@@ -34,6 +35,23 @@ public class Drivetrain implements Destroyable {
 		drivetrain = drivebase;
 		invertToggler = new Toggler(inverted);
 		rotationExponentToggler = new Toggler(usePrimaryRotationExponent);
+		this.invertRotation = invertRotation;
+	}
+
+	
+	/**
+	 * @return the drivetrain
+	 */
+	public RobotDrive getDrivetrain() {
+		return drivetrain;
+	}
+
+
+	/**
+	 * @param drivetrain the drivetrain to set
+	 */
+	public void setDrivetrain(RobotDrive drivetrain) {
+		this.drivetrain = drivetrain;
 	}
 
 	/**
@@ -85,7 +103,7 @@ public class Drivetrain implements Destroyable {
 		}else
 			//sets currentRampForward immediately to 0 if the input is 0
 			currentRampForward = 0;
-
+		rotationValue = invertRotation ? -rotationValue : rotationValue;
 		arcadeDrive(currentRampForward, rotationValue);
 
 	}
@@ -196,6 +214,22 @@ public class Drivetrain implements Destroyable {
 	public void setCurrentRampForward(double currentRampForward) {
 		this.currentRampForward = currentRampForward;
 	}
+
+	/**
+	 * @return the invertRotation
+	 */
+	public boolean isInvertRotation() {
+		return invertRotation;
+	}
+
+
+	/**
+	 * @param invertRotation the invertRotation to set
+	 */
+	public void setInvertRotation(boolean invertRotation) {
+		this.invertRotation = invertRotation;
+	}
+
 
 	/* (non-Javadoc)
 	 * @see org.impact2585.lib2585.Destroyable#destroy()
