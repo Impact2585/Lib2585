@@ -8,7 +8,7 @@ This FRC library is made to supplement WPILibJ and has [documentation available]
 
 To use Lib2585, all you need to do is include the jar file in your classpath!
 
-Downloads can be found on the [releases](https://github.com/2585Robophiles/Lib2585/releases) page. Releases are signed by one of our core developers: LoadingPleaseWait (Michael Murphey PGP Key ID: A1CFA14B) or KIllin-A13 (Amanuel Bayu PGP Key ID: B8AD8D5E).
+Downloads can be found on the [releases](https://github.com/2585Robophiles/Lib2585/releases) page. Releases are signed by one of our core developers: LoadingPleaseWait (Michael Murphey PGP Key ID: B03B9E9FA1CFA14B), KIllin-A13 (Amanuel Bayu PGP Key ID: 651B0DB8B8AD8D5E), or J0hnCena (Joshua Wong PGP Key ID: E4207A846FD1C43E).
 
 Lib2585 is dual licensed under the [GPL v3](http://www.gnu.org/licenses) and BSD License for WPILib.
 Lib2585 is free software: you can redistribute it and/or modify it under the terms of those two licenses.
