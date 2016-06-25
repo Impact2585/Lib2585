@@ -114,7 +114,7 @@ public class Drivetrain implements Destroyable {
 	 * @param rotationValue rotation output
 	 */
 	public void arcadeDrive(double moveValue, double rotationValue){
-		drivetrain.drive(moveValue, rotationValue);
+		drivetrain.arcadeDrive(moveValue, rotationValue);
 	}
 
 	/**
