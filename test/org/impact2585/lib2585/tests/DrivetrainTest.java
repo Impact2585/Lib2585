@@ -103,7 +103,7 @@ public class DrivetrainTest {
 		driveForward = 0.5;
 		ramp = rampForward();
 		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
-		Assert.assertTrue(currentRampForward == ramp && rotate == -1*Math.abs(Math.pow(-0.5, drivetrain.getPrimaryRotationExponent())));
+		Assert.assertTrue(currentRampForward == ramp && rotate == -Math.abs(Math.pow(0.5, drivetrain.getPrimaryRotationExponent())));
 			
 
 		// tests if it does not invert if the button is still pressed
@@ -114,7 +114,7 @@ public class DrivetrainTest {
 		ramp = rampForward();
 		drivetrain.setCurrentRampForward(-0.5);
 		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
-		Assert.assertTrue(currentRampForward == ramp && rotate == -1*Math.abs(Math.pow(-0.5, drivetrain.getPrimaryRotationExponent())));
+		Assert.assertTrue(currentRampForward == ramp && rotate == -Math.abs(Math.pow(0.5, drivetrain.getPrimaryRotationExponent())));
 		
 		// tests if drivetrain continues to be inverted
 		invert = false;
@@ -124,7 +124,7 @@ public class DrivetrainTest {
 		ramp = rampForward();
 		drivetrain.setCurrentRampForward(-0.5);
 		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
-		Assert.assertTrue(currentRampForward == ramp && rotate == -1*Math.abs(Math.pow(-0.5, drivetrain.getPrimaryRotationExponent())));
+		Assert.assertTrue(currentRampForward == ramp && rotate == -Math.abs(Math.pow(0.5, drivetrain.getPrimaryRotationExponent())));
 		
 		// tests if it inverts to the original position
 		invert = true;
@@ -167,6 +167,7 @@ public class DrivetrainTest {
 		Assert.assertTrue(currentRampForward == ramp && rotate == Math.pow(0.3, drivetrain.getPrimaryRotationExponent()));
 		
 		//test if the rotation can be inverted
+		rotate = 0.3;
 		drivetrain.setInvertRotation(true);
 		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
 		Assert.assertTrue(currentRampForward == ramp && rotate == -Math.pow(0.3, drivetrain.getPrimaryRotationExponent()));

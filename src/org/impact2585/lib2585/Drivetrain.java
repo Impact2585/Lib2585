@@ -1,9 +1,12 @@
 package org.impact2585.lib2585;
 
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.SpeedController;
 
 /**
  * This class contains drivetrain code for the robot
+ * WPILib will square rotation by default, but this class will use the same rotation exponent as specified
+ * If you want your drivetrain to have the same behavior as in WPILib, pass in 2 as the primary rotation exponent
  */
 public class Drivetrain implements Destroyable {
 
@@ -30,12 +33,30 @@ public class Drivetrain implements Destroyable {
 	public Drivetrain(double inputDeadzone, double ramping, double primaryEx, double secondEx, boolean invertRotation, RobotDrive drivebase){
 		deadzone = inputDeadzone;
 		ramp = ramping;
-		primaryRotationExponent = primaryEx;
-		secondaryRotationExponent = secondEx;
+		//halve the rotation exponents since WPILib squares rotation by default
+		primaryRotationExponent = primaryEx / 2;
+		secondaryRotationExponent = secondEx / 2;
 		drivetrain = drivebase;
 		invertToggler = new Toggler(inverted);
 		rotationExponentToggler = new Toggler(usePrimaryRotationExponent);
 		this.invertRotation = invertRotation;
+	}
+	
+	/**Drivetrain with a deadzone of 0, no ramp, 1 for the primary rotation exponent, 1 for the secondary rotation exponent, and no inverted rotation
+	 * @param drivetrain the RobotDrive object
+	 */
+	public Drivetrain(RobotDrive drivetrain) {
+		this(0, 1, 1, 1, false, drivetrain);	
+	}
+	
+	/**Drivetrain with a deadzone of 0, no ramping, 1 for the primary rotation exponent, 1 for the secondary rotation exponent, and no inverted rotation
+	 * @param frontLeft the left front motor controller
+	 * @param rearLeft the back left motor controller
+	 * @param frontRight the front right motor controller
+	 * @param rearRight the back right motor controller
+	 */
+	public Drivetrain(SpeedController frontLeft, SpeedController rearLeft, SpeedController frontRight, SpeedController rearRight) {
+		this(0, 1, 1, 1, false, new RobotDrive(frontLeft, rearLeft, frontRight, rearRight));
 	}
 
 	
@@ -53,7 +74,15 @@ public class Drivetrain implements Destroyable {
 	public void setDrivetrain(RobotDrive drivetrain) {
 		this.drivetrain = drivetrain;
 	}
-
+	
+	/**Controls the movement of the drivetrain with no inverting or different rotation exponents
+	 * @param desiredRampForward movement input
+	 * @param rotationValue rotation input
+	 */
+	public void arcadeControl(double desiredRampForward, double rotationValue) {
+		this.arcadeControl(desiredRampForward, rotationValue, false, false);
+	}
+	
 	/**
 	 * @param desiredRampForward movement input
 	 * @param rotationValue rotation input
@@ -74,7 +103,7 @@ public class Drivetrain implements Destroyable {
 			rotationValue = 0;
 
 		// adjusts sensitivity of the turns 
-		rotationValue = Math.signum(rotationValue) * Math.abs(Math.pow(rotationValue, usePrimaryRotationExponent ? primaryRotationExponent : secondaryRotationExponent));
+		rotationValue = Math.signum(rotationValue) * Math.pow(Math.abs(rotationValue), usePrimaryRotationExponent ? primaryRotationExponent : secondaryRotationExponent);
 
 		if(desiredRampForward != 0) {
 
