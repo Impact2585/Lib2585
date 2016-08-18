@@ -57,20 +57,23 @@ public class DrivetrainTest {
 		// tests if the robot isn't moving at the start
 		double ramp = rampForward();
 		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
-		Assert.assertTrue(currentRampForward == 0 && rotate == 0);
+		Assert.assertTrue(currentRampForward == 0);
+		Assert.assertTrue(rotate == 0);
 
 		// tests deadzone
 		driveForward = 0.14;
 		rotate = 0.14;
 		ramp = rampForward();
 		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
-		Assert.assertTrue(currentRampForward == 0 && rotate == 0);
+		Assert.assertTrue(currentRampForward == 0);
+		Assert.assertTrue(rotate == 0);
 		
 		// tests sensitivity
 		rotate = .19;
 		ramp = rampForward();
 		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
-		Assert.assertTrue(rotate == Math.pow(0.19, drivetrain.getPrimaryRotationExponent()) && currentRampForward == 0);
+		Assert.assertTrue(rotate == Math.pow(0.19, drivetrain.getPrimaryRotationExponent()));
+		Assert.assertTrue(currentRampForward == 0);
 
 		// tests forward driving
 		rotate = .14;
@@ -78,7 +81,8 @@ public class DrivetrainTest {
 		ramp = rampForward();
 		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
 
-		Assert.assertTrue(ramp == currentRampForward && rotate == 0);
+		Assert.assertTrue(ramp == currentRampForward);
+		Assert.assertTrue(rotate == 0);
 
 		// tests turning and if currentRampForward immediately goes to 0 if the input is 0
 
@@ -86,7 +90,8 @@ public class DrivetrainTest {
 		driveForward = 0;
 		ramp = rampForward();
 		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
-		Assert.assertTrue(currentRampForward == 0 && rotate == 1);
+		Assert.assertTrue(currentRampForward == 0);
+		Assert.assertTrue(rotate == 1);
 
 
 		// tests turning and driving simultaneously
@@ -95,7 +100,8 @@ public class DrivetrainTest {
 		drivetrain.setCurrentRampForward(0);
 		ramp = rampForward();
 		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
-		Assert.assertTrue(currentRampForward == ramp && rotate == 1);
+		Assert.assertTrue(currentRampForward == ramp);
+		Assert.assertTrue(rotate == 1);
 
 		// tests invert
 		invert = true;
@@ -103,7 +109,8 @@ public class DrivetrainTest {
 		driveForward = 0.5;
 		ramp = rampForward();
 		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
-		Assert.assertTrue(currentRampForward == ramp && rotate == -Math.abs(Math.pow(0.5, drivetrain.getPrimaryRotationExponent())));
+		Assert.assertTrue(currentRampForward == ramp);
+		Assert.assertTrue(rotate == -Math.abs(Math.pow(0.5, drivetrain.getPrimaryRotationExponent())));
 			
 
 		// tests if it does not invert if the button is still pressed
@@ -114,7 +121,8 @@ public class DrivetrainTest {
 		ramp = rampForward();
 		drivetrain.setCurrentRampForward(-0.5);
 		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
-		Assert.assertTrue(currentRampForward == ramp && rotate == -Math.abs(Math.pow(0.5, drivetrain.getPrimaryRotationExponent())));
+		Assert.assertTrue(currentRampForward == ramp);
+		Assert.assertTrue(rotate == -Math.abs(Math.pow(0.5, drivetrain.getPrimaryRotationExponent())));
 		
 		// tests if drivetrain continues to be inverted
 		invert = false;
@@ -124,7 +132,8 @@ public class DrivetrainTest {
 		ramp = rampForward();
 		drivetrain.setCurrentRampForward(-0.5);
 		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
-		Assert.assertTrue(currentRampForward == ramp && rotate == -Math.abs(Math.pow(0.5, drivetrain.getPrimaryRotationExponent())));
+		Assert.assertTrue(currentRampForward == ramp);
+		Assert.assertTrue(rotate == -Math.abs(Math.pow(0.5, drivetrain.getPrimaryRotationExponent())));
 		
 		// tests if it inverts to the original position
 		invert = true;
@@ -134,7 +143,8 @@ public class DrivetrainTest {
 		ramp = rampForward();
 		drivetrain.setCurrentRampForward(0.5);
 		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
-		Assert.assertTrue(currentRampForward == -ramp && rotate == Math.pow(0.7, drivetrain.getPrimaryRotationExponent()));
+		Assert.assertTrue(currentRampForward == -ramp);
+		Assert.assertTrue(rotate == Math.pow(0.7, drivetrain.getPrimaryRotationExponent()));
 
 		// see if movement and rotation go back to 0 again
 		rotate = driveForward = 0;
@@ -142,41 +152,48 @@ public class DrivetrainTest {
 		ramp = rampForward();
 		drivetrain.setCurrentRampForward(0.5);
 		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
-		Assert.assertTrue(currentRampForward == ramp && rotate == 0);
+		Assert.assertTrue(currentRampForward == ramp);
+		Assert.assertTrue(rotate == 0);
 		
 		//tests rotation exponent
 		toggleRotationExponent = true;
 		rotate = 0.4;
 		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
-		Assert.assertTrue(currentRampForward == ramp && rotate == Math.pow(0.4, drivetrain.getSecondaryRotationExponent()));
+		Assert.assertTrue(currentRampForward == ramp);
+		Assert.assertTrue(rotate == Math.pow(0.4, drivetrain.getSecondaryRotationExponent()));
 		
 		//test if the rotation exponent doesn't toggle if the toggle is pressed
 		toggleRotationExponent = true;
 		rotate = 0.4;
 		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
-		Assert.assertTrue(currentRampForward == ramp && rotate == Math.pow(0.4, drivetrain.getSecondaryRotationExponent()));
+		Assert.assertTrue(currentRampForward == ramp);
+		Assert.assertTrue(rotate == Math.pow(0.4, drivetrain.getSecondaryRotationExponent()));
 		
 		//tests if the rotation exponent can be toggled off
 		toggleRotationExponent = false;
 		rotate = 0.5;
 		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
-		Assert.assertTrue(currentRampForward == ramp && rotate == Math.pow(0.5, drivetrain.getSecondaryRotationExponent()));
+		Assert.assertTrue(currentRampForward == ramp);
+		Assert.assertTrue(rotate == Math.pow(0.5, drivetrain.getSecondaryRotationExponent()));
 		rotate = 0.3;
 		toggleRotationExponent = true;
 		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
-		Assert.assertTrue(currentRampForward == ramp && rotate == Math.pow(0.3, drivetrain.getPrimaryRotationExponent()));
+		Assert.assertTrue(currentRampForward == ramp);
+		Assert.assertTrue(rotate == Math.pow(0.3, drivetrain.getPrimaryRotationExponent()));
 		
 		//test if the rotation can be inverted
 		rotate = 0.3;
 		drivetrain.setInvertRotation(true);
 		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
-		Assert.assertTrue(currentRampForward == ramp && rotate == -Math.pow(0.3, drivetrain.getPrimaryRotationExponent()));
+		Assert.assertTrue(currentRampForward == ramp);
+		Assert.assertTrue(rotate == -Math.pow(0.3, drivetrain.getPrimaryRotationExponent()));
 	
 		//test if the rotation can be set back to normal
 		drivetrain.setInvertRotation(false);
 		rotate = 0.3;
 		drivetrain.arcadeControl(driveForward, rotate, invert, toggleRotationExponent);
-		Assert.assertTrue(currentRampForward == ramp && rotate == Math.pow(0.3, drivetrain.getPrimaryRotationExponent()));
+		Assert.assertTrue(currentRampForward == ramp);
+		Assert.assertTrue(rotate == Math.pow(0.3, drivetrain.getPrimaryRotationExponent()));
 	}
 
 	/**
