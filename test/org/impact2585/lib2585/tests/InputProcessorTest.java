@@ -66,30 +66,40 @@ public class InputProcessorTest {
 		//tests input processor for the first motor
 		analogInput1 = 1;
 		system.run();
-		Assert.assertTrue(firstMotorSpeed == 1 && secondMotorSpeed == 0 && thirdMotorSpeed == 0);
+		Assert.assertTrue(firstMotorSpeed == 1);
+		Assert.assertTrue(secondMotorSpeed == 0);
+		Assert.assertTrue(thirdMotorSpeed == 0);
 		
 		//tests logic of the input processor for the first motor
 		analogInput2 = 1;
 		system.run();
-		Assert.assertTrue(firstMotorSpeed == 0 && secondMotorSpeed == 0 && thirdMotorSpeed == 0);
+		Assert.assertTrue(firstMotorSpeed == 0);
+		Assert.assertTrue(secondMotorSpeed == 0);
+		Assert.assertTrue(thirdMotorSpeed == 0);
 		
 		//tests logic of the input processor for the second motor using a lambda expression
 		analogInput3 = -1;
 		analogInput1 = 0;
 		system.run();
-		Assert.assertTrue(firstMotorSpeed == -1 && secondMotorSpeed == -1 && thirdMotorSpeed == 0);
+		Assert.assertTrue(firstMotorSpeed == -1);
+		Assert.assertTrue(secondMotorSpeed == -1);
+		Assert.assertTrue(thirdMotorSpeed == 0);
 		
 		//tests input processor for the third motor using boolean input
 		analogInput2 = 0;
 		analogInput3 = 0;
 		digitalInput1 = true;
 		system.run();
-		Assert.assertTrue(firstMotorSpeed == 0 && secondMotorSpeed == 0 && thirdMotorSpeed == 1);
+		Assert.assertTrue(firstMotorSpeed == 0);
+		Assert.assertTrue(secondMotorSpeed == 0);
+		Assert.assertTrue(thirdMotorSpeed == 1);
 		
 		//tests logic of third motor's input processor
 		digitalInput2 = true;
 		system.run();
-		Assert.assertTrue(firstMotorSpeed == 0 && secondMotorSpeed == 0 && thirdMotorSpeed == 0);
+		Assert.assertTrue(firstMotorSpeed == 0);
+		Assert.assertTrue(secondMotorSpeed == 0);
+		Assert.assertTrue(thirdMotorSpeed == 0);
 	}
 	
 	/**
