@@ -21,7 +21,7 @@ public class Drivetrain implements Destroyable {
 	private Toggler rotationExponentToggler;
 	private boolean usePrimaryRotationExponent = true;
 	private boolean invertRotation = false;
-	
+
 	/** 
 	 * @param inputDeadzone joystick deadzone 
 	 * @param ramping ramping acceleration constant 
@@ -41,14 +41,14 @@ public class Drivetrain implements Destroyable {
 		rotationExponentToggler = new Toggler(usePrimaryRotationExponent);
 		this.invertRotation = invertRotation;
 	}
-	
+
 	/**Drivetrain with a deadzone of 0, no ramp, 1 for the primary rotation exponent, 1 for the secondary rotation exponent, and no inverted rotation
 	 * @param drivetrain the RobotDrive object
 	 */
 	public Drivetrain(RobotDrive drivetrain) {
 		this(0, 1, 1, 1, false, drivetrain);	
 	}
-	
+
 	/**Drivetrain with a deadzone of 0, no ramping, 1 for the primary rotation exponent, 1 for the secondary rotation exponent, and no inverted rotation
 	 * @param frontLeft the left front motor controller
 	 * @param rearLeft the back left motor controller
@@ -59,7 +59,7 @@ public class Drivetrain implements Destroyable {
 		this(0, 1, 1, 1, false, new RobotDrive(frontLeft, rearLeft, frontRight, rearRight));
 	}
 
-	
+
 	/**
 	 * @return the drivetrain
 	 */
@@ -74,7 +74,7 @@ public class Drivetrain implements Destroyable {
 	public void setDrivetrain(RobotDrive drivetrain) {
 		this.drivetrain = drivetrain;
 	}
-	
+
 	/**Controls the movement of the drivetrain with no inverting or different rotation exponents
 	 * @param desiredRampForward movement input
 	 * @param rotationValue rotation input
@@ -82,7 +82,7 @@ public class Drivetrain implements Destroyable {
 	public void arcadeControl(double desiredRampForward, double rotationValue) {
 		this.arcadeControl(desiredRampForward, rotationValue, false, false);
 	}
-	
+
 	/**
 	 * @param desiredRampForward movement input
 	 * @param rotationValue rotation input
@@ -129,14 +129,15 @@ public class Drivetrain implements Destroyable {
 				else
 					currentRampForward = desiredRampForward;
 			}
-		}else
+		} else {
 			//sets currentRampForward immediately to 0 if the input is 0
 			currentRampForward = 0;
+		}
 		rotationValue = invertRotation ? -rotationValue : rotationValue;
 		arcadeDrive(currentRampForward, rotationValue);
 
 	}
-	
+
 	/**
 	 * drives drivetrain without ramping
 	 * @param moveValue movement output

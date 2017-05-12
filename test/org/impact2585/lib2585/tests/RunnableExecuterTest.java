@@ -2,7 +2,7 @@ package org.impact2585.lib2585.tests;
 
 import java.util.LinkedList;
 
-import org.impact2585.lib2585.RunnableExecuter;
+import org.impact2585.lib2585.RunnableExecutor;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,20 +12,20 @@ import org.junit.Test;
  */
 public class RunnableExecuterTest {
 	
-	private RunnableExecuter concurrentExecuter;
-	private RunnableExecuter sequentialExecuter;
+	private RunnableExecutor concurrentExecutor;
+	private RunnableExecutor sequentialExecutor;
 
 	/**
 	 * Set up before test
 	 */
 	@Before
 	public void setUp() {
-		concurrentExecuter = new RunnableExecuter(true) {
+		concurrentExecutor = new RunnableExecutor(true) {
 
 			private static final long serialVersionUID = 1L;
 			
 			};
-		sequentialExecuter = new RunnableExecuter(false) {
+		sequentialExecutor = new RunnableExecutor(false) {
 
 			private static final long serialVersionUID = 1L;
 		};
@@ -40,15 +40,15 @@ public class RunnableExecuterTest {
 		for (int i = 0; i < 3; i++)
 			testRunnables.add(new TestRunnable());
 		for (Runnable item : testRunnables)
-			concurrentExecuter.getRunnables().add(item);
-		concurrentExecuter.execute();
+			concurrentExecutor.getRunnables().add(item);
+		concurrentExecutor.execute();
 		for (TestRunnable runnable : testRunnables){
 			Assert.assertTrue(runnable.ran);
 			runnable.ran = false;// reset runnable
 		}
 		// test sequential too
-		sequentialExecuter.getRunnables().addAll(testRunnables);
-		sequentialExecuter.execute();
+		sequentialExecutor.getRunnables().addAll(testRunnables);
+		sequentialExecutor.execute();
 		for (TestRunnable runnable : testRunnables) {
 			Assert.assertTrue(runnable.ran);
 		}

@@ -70,17 +70,6 @@ public class MultiMotor extends SensorBase implements SpeedController, Serializa
 			motors[i].set(speed);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see edu.wpi.first.wpilibj.SpeedController#set(double, byte)
-	 */
-	@Override
-	public void set(double speed, byte syncGroup) {
-		for (int i = 0; i < motors.length; i++)
-			motors[i].set(speed, syncGroup);
-	}
-	
 	/* (non-Javadoc)
 	 * @see edu.wpi.first.wpilibj.SpeedController#getInverted()
 	 */

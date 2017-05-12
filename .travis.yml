@@ -1,4 +1,7 @@
 language: java
+sudo: required
 jdk: oraclejdk8
+before_install: chmod +x install-dependencies.sh
+install: ./install-dependencies.sh
 script: ant test
 

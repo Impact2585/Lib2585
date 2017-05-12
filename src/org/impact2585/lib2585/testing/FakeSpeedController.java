@@ -43,15 +43,6 @@ public class FakeSpeedController implements SpeedController {
 		this.speed = speed;
 	}
 
-	/* (non-Javadoc)
-	 * @see edu.wpi.first.wpilibj.SpeedController#set(double, byte)
-	 */
-	@Override
-	public void set(double speed, byte syncGroup) {
-		set(speed);
-		sync = syncGroup;
-	}
-
 	/**
 	 * @return the pidOutput
 	 */

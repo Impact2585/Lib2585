@@ -27,6 +27,12 @@ public abstract class RobotEnvironment implements Destroyable, Serializable {
 	public RobotEnvironment(RobotBase robot) {
 		this.setRobot(robot);
 	}
+	
+	/**
+	 * Stops all motors running on the robot.
+	 * Should be called while robot is disabled.
+	 */
+	public abstract void stopRobot();
 
 	/**
 	 * Find out which mode the bot is in
@@ -59,5 +65,5 @@ public abstract class RobotEnvironment implements Destroyable, Serializable {
 	protected synchronized void setRobot(RobotBase robot) {
 		this.robot = robot;
 	}
-
+	
 }

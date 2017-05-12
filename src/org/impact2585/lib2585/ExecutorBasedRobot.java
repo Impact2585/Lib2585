@@ -7,11 +7,13 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 /**
  * Robot that uses executers This is the equivelant of a main class in WPILib.
  */
-public abstract class ExecuterBasedRobot extends IterativeRobot implements Serializable {
+public abstract class ExecutorBasedRobot extends IterativeRobot implements Serializable {
 
 	private static final long serialVersionUID = 2220871954112107703L;
-	
-	private transient Executer executer;
+
+	private transient Executer executor;
+
+	private RobotEnvironment environ;
 
 	/*
 	 * (non-Javadoc)
@@ -26,8 +28,8 @@ public abstract class ExecuterBasedRobot extends IterativeRobot implements Seria
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		if (executer != null)
-			executer.execute();
+		if (executor != null)
+			executor.execute();
 	}
 
 	/*
@@ -36,8 +38,8 @@ public abstract class ExecuterBasedRobot extends IterativeRobot implements Seria
 	 */
 	@Override
 	public void teleopPeriodic() {
-		if (executer != null)
-			executer.execute();
+		if (executor != null)
+			executor.execute();
 	}
 
 	/*
@@ -46,8 +48,8 @@ public abstract class ExecuterBasedRobot extends IterativeRobot implements Seria
 	 */
 	@Override
 	public void testPeriodic() {
-		if (executer != null)
-			executer.execute();
+		if (executor != null)
+			executor.execute();
 	}
 
 	/*
@@ -56,7 +58,9 @@ public abstract class ExecuterBasedRobot extends IterativeRobot implements Seria
 	 */
 	@Override
 	public void disabledInit() {
-		setExecuter(null);
+		setExecutor(null);
+		if (environ != null)
+			environ.stopRobot();
 	}
 
 	/*
@@ -65,24 +69,24 @@ public abstract class ExecuterBasedRobot extends IterativeRobot implements Seria
 	 */	
 	@Override
 	public void disabledPeriodic() {
-		if (executer != null)
-			executer.execute();
+		if (environ != null)
+			environ.stopRobot();
 	}
 
 	/**
 	 * Accessor for executer
 	 * @return the executer
 	 */
-	protected synchronized Executer getExecuter() {
-		return executer;
+	protected synchronized Executer getExecutor() {
+		return executor;
 	}
 
 	/**
 	 * Mutator for executer
 	 * @param executer the executer to set
 	 */
-	protected synchronized void setExecuter(Executer executer) {
-		this.executer = executer;
+	protected synchronized void setExecutor(Executer executer) {
+		this.executor = executer;
 	}
 
 }
