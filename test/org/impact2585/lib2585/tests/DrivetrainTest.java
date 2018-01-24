@@ -5,7 +5,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+
 
 /**
  * test for the wheel system
@@ -209,7 +210,7 @@ public class DrivetrainTest {
 		 * @param invertRotation boolean for inverting the rotate value
 		 * @param drivebase robot drive object
 		 */
-		public TestDrivetrain(double inputDeadzone, double ramping, double primaryEx, double secondEx, boolean invertRotation, RobotDrive drivebase) {
+		public TestDrivetrain(double inputDeadzone, double ramping, double primaryEx, double secondEx, boolean invertRotation, DifferentialDrive drivebase) {
 			super(inputDeadzone, ramping, primaryEx, secondEx, invertRotation, drivebase);
 		}
 

@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.SensorBase;
+import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 
 /**
  * Solenoid with relays going in opposite directions
@@ -82,6 +83,12 @@ public class DoubleSolenoid extends SensorBase implements Serializable {
 	 */
 	protected void setDefaultState(boolean defaultState) {
 		this.defaultState = defaultState;
+	}
+
+	@Override
+	public void initSendable(SendableBuilder builder) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

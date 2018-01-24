@@ -1,7 +1,8 @@
 package org.impact2585.lib2585;
 
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 /**
  * This class contains drivetrain code for the robot
@@ -14,7 +15,7 @@ public class Drivetrain implements Destroyable {
 	private double ramp;
 	private double primaryRotationExponent;
 	private double secondaryRotationExponent;
-	private RobotDrive drivetrain;
+	private DifferentialDrive drivetrain;
 	private double currentRampForward;
 	private boolean inverted;
 	private Toggler invertToggler;
@@ -30,7 +31,7 @@ public class Drivetrain implements Destroyable {
 	 * @param invertRotation boolean for inverting the rotate value
 	 * @param drivebase robot drive object
 	 */
-	public Drivetrain(double inputDeadzone, double ramping, double primaryEx, double secondEx, boolean invertRotation, RobotDrive drivebase){
+	public Drivetrain(double inputDeadzone, double ramping, double primaryEx, double secondEx, boolean invertRotation, DifferentialDrive drivebase){
 		deadzone = inputDeadzone;
 		ramp = ramping;
 		//halve the rotation exponents since WPILib squares rotation by default
@@ -45,7 +46,7 @@ public class Drivetrain implements Destroyable {
 	/**Drivetrain with a deadzone of 0, no ramp, 1 for the primary rotation exponent, 1 for the secondary rotation exponent, and no inverted rotation
 	 * @param drivetrain the RobotDrive object
 	 */
-	public Drivetrain(RobotDrive drivetrain) {
+	public Drivetrain(DifferentialDrive drivetrain) {
 		this(0, 1, 1, 1, false, drivetrain);	
 	}
 
@@ -56,14 +57,14 @@ public class Drivetrain implements Destroyable {
 	 * @param rearRight the back right motor controller
 	 */
 	public Drivetrain(SpeedController frontLeft, SpeedController rearLeft, SpeedController frontRight, SpeedController rearRight) {
-		this(0, 1, 1, 1, false, new RobotDrive(frontLeft, rearLeft, frontRight, rearRight));
+	   this(0, 1, 1, 1, false, new DifferentialDrive(new SpeedControllerGroup(frontLeft, rearLeft), new SpeedControllerGroup(frontRight, rearRight)));
 	}
 
 
 	/**
 	 * @return the drivetrain
 	 */
-	public RobotDrive getDrivetrain() {
+	public DifferentialDrive getDrivetrain() {
 		return drivetrain;
 	}
 
@@ -71,7 +72,7 @@ public class Drivetrain implements Destroyable {
 	/**
 	 * @param drivetrain the drivetrain to set
 	 */
-	public void setDrivetrain(RobotDrive drivetrain) {
+	public void setDrivetrain(DifferentialDrive drivetrain) {
 		this.drivetrain = drivetrain;
 	}
 

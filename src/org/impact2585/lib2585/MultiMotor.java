@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import edu.wpi.first.wpilibj.SensorBase;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
 
 /**
  * This class can be used to control multiple motors which are working together as one.
@@ -110,6 +111,12 @@ public class MultiMotor extends SensorBase implements SpeedController, Serializa
 				motor.free();
 			}
 		}
+	}
+
+	@Override
+	public void initSendable(SendableBuilder builder) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
